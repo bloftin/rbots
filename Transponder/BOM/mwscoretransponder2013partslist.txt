@@ -1,0 +1,40 @@
+1x ATMEGA328P
+http://www.digikey.com/product-detail/en/ATMEGA168PA-AUR/ATMEGA168PA-AURCT-ND/2774205
+
+1x SMA-DIODE
+http://www.digikey.com/product-detail/en/B130-13-F/B130-FDICT-ND/815318
+
+1x 5v VREG SOT223
+http://www.digikey.com/product-detail/en/MIC2954-03WS%20TR/576-1154-1-ND/771858
+
+1x 3.3v VREG SOT223
+http://www.digikey.com/product-detail/en/MIC5209-3.3YS%20TR/576-1274-1-ND/771899
+
+4x 1k ohm 603-RES
+http://www.digikey.com/product-detail/en/RC0603JR-071KL/311-1.0KGRCT-ND/729624?cur=USD
+
+9x 10k ohm 603-RES
+http://www.digikey.com/product-detail/en/RC0603JR-0710KL/311-10KGRCT-ND/729647?cur=USD
+
+6x 0.1 uF 603-CAP
+http://www.digikey.com/product-detail/en/C1608X7R1E104K/445-1316-1-ND/567697?cur=USD
+
+2x 22pF uF 603-CAP
+http://www.digikey.com/product-detail/en/C1608C0G1H220J/445-1273-1-ND/567670?cur=USD
+
+2x red, 1.7v 603-LED
+http://www.digikey.com/product-detail/en/SML-LX0603SRW-TR/67-1551-1-ND/304364?cur=USD
+
+1x 16MHz crystal CRYSTAL-SMD-5X3
+http://www.digikey.com/product-detail/en/7B-16.000MAAJ-T/887-1104-1-ND/2118981?cur=USD
+
+1x screw terminal
+http://www.digikey.com/product-detail/en/OSTTE020104/ED2740-ND/2351816?cur=USD
+
+1x 8pos dip switch
+http://www.digikey.com/product-detail/en/219-8MST/CT2198MST-ND/223209
+
+2x .079" (2mm) smt female header
+http://www.digikey.com/product-detail/en/NPPN101BFLD-RC/S5902-10-ND/810025?cur=USD
+
+
