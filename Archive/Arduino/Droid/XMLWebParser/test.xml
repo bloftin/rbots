@@ -1,0 +1,6 @@
+<outertag>
+  <innertag sampleattribute="innertagAttribute">
+    <mytag>RTEAM Robotics Club Rulz</mytag>
+    <tagwithnumber thenumber="1337"/>
+  </innertag>
+</outertag>
