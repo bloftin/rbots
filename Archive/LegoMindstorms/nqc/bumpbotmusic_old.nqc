@@ -1,0 +1,82 @@
+// bumpbot2.nqc - improved sensor design (with sound!)
+
+// sensors
+#define BUMP SENSOR_1
+
+// motors
+#define LEFT OUT_A
+#define RIGHT OUT_C
+
+// constants
+#define REV_TIME		50
+#define SPIN_TIME		70
+#define SPIN_RANDOM     50
+
+// Indiana Jones Theme
+void IndianaJones()
+{
+  PlayTone(330,17);
+  Wait(29);
+  PlayTone(349,8);
+  Wait(10);
+  PlayTone(392,8);
+  Wait(20);
+  PlayTone(523,88);
+  Wait(101);
+  PlayTone(294,17);
+  Wait(30);
+  PlayTone(330,7);
+  Wait(10);
+  PlayTone(349,107);
+  Wait(119);
+  PlayTone(392,18);
+  Wait(30);
+  PlayTone(440,8);
+  Wait(10);
+  PlayTone(494,8);
+  Wait(20);
+  PlayTone(698,88);
+  Wait(100);
+  PlayTone(440,18);
+  Wait(30);
+  PlayTone(494,8);
+  Wait(10); 
+  PlayTone(523,38);
+  Wait(40);
+  PlayTone(587,38);
+  Wait(40);
+  PlayTone(659,18);  
+  }
+
+task main()
+{
+	// configure the sensor
+	SetSensor(BUMP, SENSOR_TOUCH);
+	
+	// play indiana jones theme song
+	IndianaJones();
+
+	// start going forward
+	On(LEFT+RIGHT);
+
+	// do this forever
+	while(true)
+	{
+		// wait for bumper to hit something
+		until(BUMP == 0);
+
+		// play sound
+		PlaySound(SOUND_CLICK);
+
+		// back up
+		Rev(LEFT+RIGHT);
+		Wait(REV_TIME);
+
+		// spin around
+		Fwd(LEFT);
+		Wait(SPIN_TIME+Random(SPIN_RANDOM));
+
+		// resume
+		Fwd(RIGHT);
+	}
+}

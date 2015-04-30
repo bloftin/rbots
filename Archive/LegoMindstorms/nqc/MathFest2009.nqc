@@ -1,0 +1,251 @@
+// MathFest 2009 - GNC Robot
+
+// distances are in counts
+
+#define DISTANCE_1  450
+#define TURN_1  47
+
+#define DISTANCE_2  450
+#define TURN_2  47
+
+#define DISTANCE_3  450
+#define TURN_3  47
+
+#define DISTANCE_4  450
+#define TURN_4  47
+
+#define DISTANCE_5  0
+#define TURN_5 0
+
+#define DISTANCE_6  0
+#define TURN_6  0
+
+#define DISTANCE_7  0
+#define TURN_7  0
+
+#define DISTANCE_8  0
+#define TURN_8  0
+
+#define DISTANCE_9  0
+#define TURN_9  0
+
+#define DISTANCE_10  0
+#define TURN_10  0
+
+// sensors
+#define LTurn SENSOR_1
+#define RTurn SENSOR_3
+
+// motors
+#define LEFT OUT_A
+#define RIGHT OUT_C
+#define RIGHT_INITIAL  3
+#define LEFT_INITIAL   3
+// timer runs at 10 Hz, so a timer_limit of 10 is 1 second
+#define TIMER_LIMIT   1
+#define COUNTER_LIMIT 6         
+#define INITIAL_SPREAD 1
+
+// controller proportional constant
+#define KP 1
+// controller integral constant
+#define KI 0
+
+int counter;
+int distance;
+int angle;
+int outFlag = 1;
+int x;
+int spread;
+int temp1;
+int temp2;
+int sum=0;
+
+
+task main()
+{
+
+  
+  // initialize variables
+  spread = INITIAL_SPREAD;
+  counter = 0;
+  
+	// configure the sensors
+	SetSensorType(LTurn,SENSOR_TYPE_ROTATION);
+	SetSensorType(RTurn,SENSOR_TYPE_ROTATION);
+	SetSensorMode(LTurn,SENSOR_MODE_ROTATION);
+	SetSensorMode(RTurn,SENSOR_MODE_ROTATION);
+	
+
+	//SetPower(    LEFT, 3);
+  //SetPower(    RIGHT, 3);
+		
+  // enable data logging		
+	CreateDatalog(500);
+  AddToDatalog(Timer(0));
+	
+  // start going forward
+	//Fwd(RIGHT);
+	//Fwd(LEFT);
+
+	start watch_timer;
+	
+	straight(DISTANCE_1);
+	turn(TURN_1);
+	
+	straight(DISTANCE_2);
+	turn(TURN_2);
+	
+	//straight(DISTANCE_3);
+	//turn(TURN_3);
+	
+	//straight(DISTANCE_4);
+	//turn(TURN_4);
+	
+	//straight(DISTANCE_5);
+	//turn(TURN_5);
+	
+	//straight(DISTANCE_6);
+	//turn(TURN_6);
+	
+	//straight(DISTANCE_7);
+	//turn(TURN_7);
+	
+	//straight(DISTANCE_8);
+	//turn(TURN_8);
+	
+	//straight(DISTANCE_9);
+	//turn(TURN_9);
+	
+	//straight(DISTANCE_10);
+	//turn(TURN_10);
+	
+    
+}
+  
+void MotorCommand()
+{
+  On(LEFT);
+	On(RIGHT);
+  if(x!=spread)
+  {
+    // adjust the spread by the correction, x.  then use
+    // the spread to compute power levels.  The logic for
+    // a positive spread and a negative spread is largely
+    // symmetric.  In the case where the spread is an odd number
+    // (spread&1 is true), increment the fast wheel by 1 power step.
+    spread=x;
+    if(spread<0){
+      if(spread<-7)
+         spread = -7;
+      temp1 = 3-spread/2;
+      temp2 = 3+spread/2;
+      if(spread&1)
+          temp1++;
+    }else{
+      if(spread>7)
+        spread = 7;
+      temp1 = 3-spread/2;
+      temp2 = 3+spread/2;
+      if(spread&1)
+          temp2++;
+    }
+    SetPower(LEFT, temp1);
+    SetPower(RIGHT, temp2);
+    
+    Rev(RIGHT);
+    Fwd(LEFT);
+  }
+
+
+}
+task watch_timer()
+{
+	while(true)
+	{
+		until(Timer(0) > TIMER_LIMIT);
+		//PlayTone(440, 10);
+		sum += angle/10;
+		AddToDatalog(LTurn);
+		AddToDatalog(RTurn);
+		AddToDatalog(sum);
+		//AddToDatalog(distance);
+		ClearTimer(0);
+		//ClearSensor(LTurn);
+		//ClearSensor(RTurn);
+		//counter=0;
+	}
+}
+		
+
+void straight(int desiredDistance)
+{
+  // brute force distances and turns go
+  // one after another to be backward compatable
+  // with rcx 1.0 which cant use arrays
+	  
+  // clear variables
+  ClearSensor(LTurn);
+  ClearSensor(RTurn);
+  sum = 0;
+  outFlag = 1;
+  
+  // go straight for distance 1 
+  while(outFlag)
+  {
+    distance = (LTurn + RTurn);
+	  // scale distance check by 2 so we dont have to divide by 2 for
+	  // distance calculation
+    if (distance >= desiredDistance)
+    {
+      // Once we get to desired distance brake (turn off motors)
+      Off(RIGHT);
+		  Off(LEFT);
+      outFlag=0;
+    }
+    else
+    {
+      // determine power level to send to motors based on Proportional 
+      // controller      
+      x  = INITIAL_SPREAD+KP*angle + KI*sum/30;
+      MotorCommand();
+    }
+  }
+}
+
+void turn(int desiredTurn)
+{
+  // reset sum, clear sensors, turn motors back on
+  sum = 0;
+  ClearSensor(LTurn);
+  ClearSensor(RTurn);
+  
+	outFlag = 1;
+  // turn  for turn 1 
+  while(outFlag)
+  {
+  
+    angle = LTurn - RTurn;
+	  // scale distance check by 2 so we dont have to divide by 2 for
+	  // distance calculation
+    if (angle >= desiredTurn)
+    {
+      // Once we get to desired distance brake (turn off motors)
+      Off(RIGHT);
+		  Off(LEFT);
+      outFlag=0;
+    }
+    else
+    {
+      On(LEFT);
+	    On(RIGHT);
+      // dont use controller during turn
+      SetPower(    LEFT, 4);
+      SetPower(    RIGHT, 0);
+      Fwd(RIGHT);
+		  Fwd(LEFT);
+    }
+  }
+
+}
+

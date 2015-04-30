@@ -1,0 +1,73 @@
+// theseus.nqc - simple maze bot
+// adapted to NQC from Theseus in Servo magazine 08.2005
+
+// sensors
+#define BUMP SENSOR_3
+#define WALL_SENSOR SENSOR_1
+
+// motors
+#define LEFT OUT_A
+#define RIGHT OUT_C
+
+// constants
+#define REV_TIME		50
+#define SPIN_TIME		70
+#define SPIN_RANDOM     50
+
+task main()
+{
+	// configure the sensor
+	SetSensor(BUMP, SENSOR_TOUCH);
+	SetSensor(WALL_SENSOR, SENSOR_TOUCH);
+
+  while(true)
+  {
+  
+  	// do this forever
+  	while(true)
+  	{
+  	
+  	  if(BUMP == 1)
+		  {
+		  
+    		// We are in a corner
+    		PlaySound(SOUND_DOWN);
+    		SetPower(LEFT, 6);
+        SetPower(RIGHT, 6);
+    		// Back up, and turn left
+    		Rev(RIGHT+LEFT);
+    		On(LEFT);
+        On(RIGHT);
+    		Wait(5);
+    		Fwd(RIGHT);
+    		Wait(100);
+    		Fwd(LEFT);
+      }	
+  	
+  		// wait for bumper to hit something
+  		if(WALL_SENSOR == 0)
+  		{
+  		  // If wall sensor is not touching the wall
+        // turn right until it is
+        // start going forward
+        SetPower(LEFT, 0);
+        SetPower(RIGHT, 6);
+        Fwd(LEFT);
+        Fwd(RIGHT);
+        On(LEFT);
+        On(RIGHT);
+      }
+      else
+      {
+        // If wall sensor is touching the wall
+        // go straight
+        SetPower(LEFT, 7);
+        SetPower(RIGHT, 0);
+        Fwd(LEFT);
+        Fwd(RIGHT);
+        On(LEFT);
+        Off(RIGHT);
+      }
+    }
+  }
+}

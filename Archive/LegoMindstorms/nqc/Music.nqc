@@ -1,0 +1,63 @@
+// bumpbot.nqc - a simple bumper (with sound!)
+
+// sensors
+#define BUMP SENSOR_1
+
+// motors
+#define LEFT OUT_A
+#define RIGHT OUT_C
+
+// constants
+#define REV_TIME		50
+#define SPIN_TIME		70
+
+task main()
+{
+	// configure the sensor
+	//SetSensor(BUMP, SENSOR_TOUCH);
+
+	// start going forward
+	//On(LEFT+RIGHT);
+
+	// do this forever
+	while(true)
+	{
+		//play star wars theme song
+PlayTone(523,100);
+PlayTone(784,100);
+PlayTone(698,13);
+PlayTone(659,13);
+PlayTone(587,13);
+PlayTone(1046,100);
+PlayTone(784,100);
+PlayTone(698,13);
+PlayTone(659,13);
+PlayTone(587,13);
+PlayTone(1046,100);
+PlayTone(784,100);
+PlayTone(698,13);
+PlayTone(659,13);
+PlayTone(698,13);
+PlayTone(587,100);
+PlayTone(392,13);
+PlayTone(392,13);
+PlayTone(392,13);
+PlayTone(523,100);
+PlayTone(784,100);
+PlayTone(698,13);
+PlayTone(659,13);
+PlayTone(587,13);
+PlayTone(1046,100);
+PlayTone(784,100);
+PlayTone(698,13);
+PlayTone(659,13);
+PlayTone(698,13);
+PlayTone(587,100);
+PlayTone(1046,100);
+PlayTone(784,100);
+PlayTone(932,13);
+PlayTone(880,13);
+PlayTone(932,13);
+PlayTone(784,100);
+	}
+}
