@@ -2,10 +2,10 @@
 #define Motor_h
 
 //motor control pins
-int PWM_L = 9;   //PWM control for motor outputs 1 and 2 is on digital pin 10
-int PWM_R = 10;   //PWM control for motor outputs 3 and 4 is on digital pin 11
-int DIR_L = 5;   //direction control for motor outputs 1 and 2 is on digital pin 12
-int DIR_R = 6;  //direction control for motor outputs 3 and 4 is on digital pin 13
+int PWM_L = 5;   //PWM control for motor outputs 1 and 2 is on digital pin 10
+int PWM_R = 6;   //PWM control for motor outputs 3 and 4 is on digital pin 11
+int DIR_L = 9;   //direction control for motor outputs 1 and 2 is on digital pin 12
+int DIR_R = 10;  //direction control for motor outputs 3 and 4 is on digital pin 13
 
 //Full Motor Speed
 #define MAXSPEED 200
