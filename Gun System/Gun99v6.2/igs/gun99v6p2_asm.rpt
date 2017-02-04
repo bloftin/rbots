@@ -1,0 +1,73 @@
+*****************************************************************
+              SolidWorks Corporation - IGES Report
+*****************************************************************
+=================================================================
+General Information
+=================================================================
+Sending System Product I.D.  : GUN99V6P3_ASM
+Receiving System Product I.D.: GUN99V6P3_ASM
+Sending File Name            : gun99v6p2_asm.igs
+System I.D.                  : Pro/ENGINEER by Parametric Technology Corporation
+Preprocessor Version         : 1999260
+File Creation Date           : 170203.193931
+Model Creation Date          : 170203.193931
+Units                        : INCH
+Model Space Scale            : 1.000000
+Author                       : GhengisDhon
+Organization                 : Unknown
+
+
+=================================================================
+Entity Processing Information
+=================================================================
+WARNING: Problem creating a body from surfaces...
+Face to face inconsistency.
+
+
+=================================================================
+Precision analysis of IGES file:
+=================================================================
+
+
+=================================================================
+Entity Summary
+=================================================================
+-----------------------------------------------------------------
+Type Name                                         Count Converted
+---- ----                                         ----- ---------
+100  Arc                                           1405      1405
+102  Composite curve                               2331      2331
+110  Line                                          7292      7292
+116  Point                                          150       150
+120  Surface of revolution                          459       459
+124  Transformation matrix                         1405      1405
+126  Rational B-spline curve                       1819      1819
+128  Rational B-spline surface                      515       515
+142  Curve on a parametric surface                 1164      1164
+144  Trimmed parametric surface                     974       974
+314  Color definition                                30        30
+402  Associativity instance                          25        25
+406  Property                                        25        25
+_________________________________________________________________
+
+
+=================================================================
+Import Options
+=================================================================
+Include surface/solid entities: YES
+-Try forming solid(s): YES
+Include free point/curve entities: NO
+
+
+=================================================================
+Result Summary
+=================================================================
+SolidWorks Feature Type                Count
+-----------------------                -----
+Solid Feature(s)                          22
+Surface Feature(s)                         2
+Curve/Sketch Feature(s)                    0
+--------------------------------------------
+Start Time: Friday, February 03, 2017 19:42:58
+Finish Time: Friday, February 03, 2017 19:43:42
+Total Processing Time: 0 days, 00 hours, 00 mins, 44 secs
